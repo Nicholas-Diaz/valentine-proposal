@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Beautifur Baby! 💖</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        color: white;
+        min-height: 100vh;
+    }
+
+    /* ---------- PAGE BASE ---------- */
+    .page {
+        display: none;
+        min-height: 100vh;
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+
+    .active {
+        display: flex;
+    }
+
+    h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    button {
+        font-size: 1.2em;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* ---------- PAGE 1 : FAKE LOGIN ---------- */
+    #page1 {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #enterBtn {
+        background: white;
+        color: #ff2f68;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    /* ---------- PAGE 2 : PROPOSAL ---------- */
+    #page2 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .buttons {
+        margin-top: 40px;
+        position: relative;
+    }
+
+    #yesBtn {
+        background-color: #ff2f68;
+        color: white;
+        margin-right: 20px;
+        z-index: 5;
+    }
+
+    #noBtn {
+        background-color: #444;
+        color: white;
+        z-index: 6;
+    }
+
+    /* ---------- PAGE 3 : YES PAGE ---------- */
+    #page3 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .gallery {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .gallery img {
+        width: 250px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .love-box {
+        background: white;
+        color: #333;
+        padding: 30px;
+        border-radius: 20px;
+        max-width: 700px;
+        margin-top: 20px;
+        animation: fadeIn 1s ease forwards;
+    }
+
+    .love-box h2 {
+        color: #ff2f68;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1>Hello, Beautifur!! 💖</h1>
+    <p>This page is for my baby only!!</p>
+    <button id="enterBtn">Enter 💌</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>Will You Be My Valentine? 💖</h1>
+    <p>Wag ka na mag sinungaling, Yes or No lang! ako na to oh 😏</p>
+
+    <div class="buttons">
+        <button id="yesBtn">YES 🥰💕</button>
+        <button id="noBtn">NO 😭</button>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <div class="love-box">
+        <h2>You Said Yes Again!!😻💌</h2>
+        <p>
+            Thank you for always choosing me, baby. 
+            I know I’m not a perfect boyfriend, but for you, I always do my best to make you feel happy and beautiful.
+            This is our third Valentine’s together, 
+            and you’re still just as beautiful as you were on our first Valentine’s. 
+            Hindi ako mapapagod na intindihin ang mga topaks mo. 
+            I love you for who you truly are, Kay.
+        </p>
+        <p><strong>I love you. My Forever Valentine!❤️</strong></p>
+    </div>
+
+    <div class="gallery">
+        <img src="photo1.jpg" alt="Memory 1">
+        <img src="photo2.jpg" alt="Memory 2">
+        <img src="photo3.jpg" alt="Memory 3">
+    </div>
+</div>
+
+<script>
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+    const page3 = document.getElementById("page3");
+
+    const enterBtn = document.getElementById("enterBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    let noClicks = 0;
+
+    // Page switch
+    enterBtn.addEventListener("click", () => {
+        page1.classList.remove("active");
+        page2.classList.add("active");
+    });
+
+    noBtn.addEventListener("click", () => {
+        noClicks++;
+
+        const scale = 1 + noClicks * 1.1;
+        yesBtn.style.transform = `scale(${scale})`;
+
+        if (noClicks >= 3) {
+            yesBtn.style.position = "fixed";
+            yesBtn.style.top = "50%";
+            yesBtn.style.left = "50%";
+            yesBtn.style.transform =
+                `translate(-50%, -50%) scale(${scale})`;
+            yesBtn.style.zIndex = "9999";
+        }
+
+        noBtn.style.position = "fixed";
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+
+        noBtn.style.left = Math.random() * maxX + "px";
+        noBtn.style.top = Math.random() * maxY + "px";
+
+        if (noClicks === 1) noBtn.textContent = "LUH PABEBE PA OH 😠";
+        if (noClicks === 3) noBtn.textContent = "KULIT MU!! 😤";
+        if (noClicks >= 4) noBtn.textContent = "HMPP!! PARA KANG NAG TAMPO SA BIGAS 😾";
+    });
+
+    yesBtn.addEventListener("click", () => {
+        page2.classList.remove("active");
+        page3.classList.add("active");
+    });
+</script>
+
+</body>
+</html>
